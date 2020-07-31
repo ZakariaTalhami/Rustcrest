@@ -12,24 +12,38 @@ public class NavAgentController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void moveToPosition(Vector3 targetPosition)
+    public void MoveToPosition(Vector3 targetPosition)
     {
-        agent.SetDestination(targetPosition);
+        MoveToPosition(targetPosition, 0);
     }
 
-    public bool hasReachedDestination() {
+    public void MoveToPosition(Vector3 targetPosition, float stoppingDistance)
+    {
+        agent.SetDestination(targetPosition);
+        agent.stoppingDistance = stoppingDistance;
+    }
+
+    public bool HasReachedDestination()
+    {
         bool hasReached = false;
-         if (!agent.pathPending)
+        if (!agent.pathPending)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                {
-                    hasReached = true;
-                }
+                hasReached = true;
             }
         }
         return hasReached;
+    }
+
+    public bool IsPathPending()
+    {
+        return agent.pathPending;
+    }
+
+    public Vector3 GetAgentDestination()
+    {
+        return agent.destination;
     }
 
 }

@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4475962981878728132}
+  - component: {fileID: 270607883678238049}
+  - component: {fileID: 7522221681270768285}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Intractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +33,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &270607883678238049
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962256290307842107}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.51361966, z: 0.5260908}
+  m_Center: {x: 0, y: 0.24319017, z: -0.004157096}
+--- !u!114 &7522221681270768285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962256290307842107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa95ba13e1914f449b3574201b16b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 2
+  items:
+  - slugName: sword
+    itemName: Sword
+    description: A sword of the poet
+    ItemType: 1
+  - slugName: pizza
+    itemName: Pizza
+    description: Pizza...no more description needed.
+    ItemType: 0
+--- !u!65 &4331412720960163685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858191971406283608}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.008, y: 0.005, z: 0.005}
+  m_Center: {x: -6.3179253e-18, y: -2.328307e-10, z: 0.00032530326}
+--- !u!114 &1774306003408056410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858191971406283608}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa95ba13e1914f449b3574201b16b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 2
+  items: []
 --- !u!1001 &4858191971406185976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96,6 +160,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba929fe396143764799a02336110b574, type: 3}
+--- !u!1 &4858191971406283608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: ba929fe396143764799a02336110b574,
+    type: 3}
+  m_PrefabInstance: {fileID: 4858191971406185976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4858191971406323576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ba929fe396143764799a02336110b574,

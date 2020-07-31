@@ -1,0 +1,18 @@
+[
+    {
+        "slugName": "log",
+        "itemName": "Log",
+        "description": "A Single Log",
+        "itemType": "Quest",
+        "isStackable": true,
+        "stackSize": 5
+    },
+    {
+        "slugName": "axe",
+        "itemName": "Axe",
+        "description": "Father's axe for firewood chopping",
+        "itemType": "Quest",
+        "isStackable": false,
+        "stackSize": 1
+    }
+]

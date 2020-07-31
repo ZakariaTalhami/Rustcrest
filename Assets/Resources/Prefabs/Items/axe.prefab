@@ -39,9 +39,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5631038241609697642}
+  - component: {fileID: 3884476464008186815}
+  - component: {fileID: 5114454668315493336}
+  - component: {fileID: 79303342560618706}
+  - component: {fileID: 2146423326296894052}
+  - component: {fileID: 6032897786616319941}
   m_Layer: 0
-  m_Name: Axe
-  m_TagString: Untagged
+  m_Name: axe
+  m_TagString: Intractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,6 +67,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &3884476464008186815
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6869220682029027105}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &5114454668315493336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6869220682029027105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.18619877, y: 0.14612877, z: 0.036032952}
+  m_Center: {x: -0.026536971, y: 0.18810266, z: -0.0007420778}
+--- !u!136 &79303342560618706
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6869220682029027105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.039885707
+  m_Height: 0.4639326
+  m_Direction: 1
+  m_Center: {x: 0.015914295, y: 0, z: 0}
+--- !u!136 &2146423326296894052
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6869220682029027105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 0.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6032897786616319941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6869220682029027105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e229ca7b041ae240a5f933e208f85fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 1.5
+  itemSlug: axe
+  item:
+    slugName: 
+    itemName: 
+    description: 
+    ItemType: 0
+    isStackable: 0
+    stackSize: 0
+    icon: {fileID: 0}
+    prefab: {fileID: 0}
 --- !u!1001 &1604299138609332526
 PrefabInstance:
   m_ObjectHideFlags: 0

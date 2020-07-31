@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(NavAgentController))]
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject pfbMovementMarker;
+
     public LayerMask walkableLayers;
     private NavAgentController agentController;
     private Vector3 targetPosition;
 
     // MovementMaker
+    public GameObject pfbMovementMarker;
     private GameObject goMovementMarker;
-
+    private Interactable interactedObject;
     private void Start()
     {
         agentController = GetComponent<NavAgentController>();
@@ -19,35 +21,48 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Check for movement inputs.
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
-            targetPosition = MouseUtil.getMousePositionInWorld(walkableLayers);
-            Debug.Log(targetPosition);
-            setMovementMarker(targetPosition);
-            agentController.moveToPosition(targetPosition);
-            // Stop focusing on an Item.
+            MouseClickEvent mouseClick = MouseUtil.GetMousePositionInWorld();
+            targetPosition = mouseClick.point;
+            SetMovementMarker(targetPosition);
+
+            if (mouseClick.hitGameObject.tag == "Intractable")
+            {
+                // Interact with object
+                interactedObject = mouseClick.hitGameObject.gameObject.GetComponent<Interactable>();
+                interactedObject.SetInteraction(agentController);
+            }
+            else
+            {
+                agentController.MoveToPosition(targetPosition);
+                if (interactedObject)
+                {
+                    // Stop focusing on an Item.
+                    interactedObject.EndInteraction();
+                }
+            }
+            UIEventHandler.ContainerClosed();
         }
 
-        // Check for Interaction actions.
-        if (Input.GetMouseButton(0))
+        if (agentController.HasReachedDestination())
         {
-            // Set Focus on an interactable.
+            RemoveMovementMarker();
         }
-
-        if (agentController.hasReachedDestination())
+        else
         {
-            removeMovementMarker();
+            SetMovementMarker(agentController.GetAgentDestination());
         }
 
     }
 
-    private void setMovementMarker(Vector3 pos)
+    private void SetMovementMarker(Vector3 pos)
     {
-        removeMovementMarker();
-        goMovementMarker = Instantiate(pfbMovementMarker, pos, Quaternion.identity);
+        RemoveMovementMarker();
+        goMovementMarker = Instantiate(pfbMovementMarker, new Vector3(pos.x, 0, pos.z), Quaternion.identity);
     }
 
-    private void removeMovementMarker()
+    private void RemoveMovementMarker()
     {
         if (goMovementMarker) Destroy(goMovementMarker);
     }

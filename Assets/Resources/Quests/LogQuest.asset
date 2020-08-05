@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea542f3249da47a4eb4193f3905a1a91, type: 3}
+  m_Name: LogQuest
+  m_EditorClassIdentifier: 
+  name: Wood you find the logs?
+  description: 'There are missing logs from the log pile, they might be scattered
+    around the field, you were asked to look for and collect the logs. Logs 0 / 5 '
+  goals:
+  - {fileID: 11400000, guid: acb91d57b42e78b49aeab6efc8d531fe, type: 2}
+  questDialog:
+    text:
+    - Some of the logs I was going to chop into firewood seem to be missing and the
+      log piles are all a mess
+    - "I would think a bear might have disturbed the piles, but why would it take
+      the logs and there aren\u2019t any tracks of a bear"
+    - How odd?
+    - Any how, would you kindly have a look around and round them up
+  inProgressDialog:
+    text:
+    - Have you found the missing logs yet?
+  completeDialog:
+    text:
+    - Ah...so you found them!
+    - Is that all that you could find? There should be more.
+    - Anyway, we have to get the firewood chopped before it gets too late.

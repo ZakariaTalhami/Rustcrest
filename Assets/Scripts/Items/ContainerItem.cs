@@ -7,7 +7,7 @@ public class ContainerItem : Interactable {
     public int size;
 
     [SerializeField]
-    private List<string> initialItemsSlug;
+    private List<string> initialItemsSlug= new List<string>();
 
     public List<Item> items;
 

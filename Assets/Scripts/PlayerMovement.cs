@@ -29,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
             if (mouseClick.hitGameObject.tag == "Intractable")
             {
+                // End old interaction 
+                if(interactedObject != null)
+                {
+                    interactedObject.EndInteraction();
+                }
+
                 // Interact with object
                 interactedObject = mouseClick.hitGameObject.gameObject.GetComponent<Interactable>();
                 interactedObject.SetInteraction(agentController);
@@ -43,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             UIEventHandler.ContainerClosed();
+            UIEventHandler.DialogInterrupted();
         }
 
         if (agentController.HasReachedDestination())

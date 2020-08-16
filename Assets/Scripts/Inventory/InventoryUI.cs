@@ -29,6 +29,7 @@ public class InventoryUI : MonoBehaviour
     private void SetUpEventListeners()
     {
         UIEventHandler.onItemAddedToInventory += ItemAdded;
+        UIEventHandler.onItemRemovedFromInventroy += ItemRemoved;
         UIEventHandler.onItemAddedToContainer += ItemAddedToContainer;
         UIEventHandler.onContainerOpened += OpenContainer;
         UIEventHandler.onContainerClosed += CloseContainerPanel;
@@ -94,7 +95,6 @@ public class InventoryUI : MonoBehaviour
     private void ItemAddedToExistingSlot(List<Slot> slots, Item item) 
     {
         int index = findItemSlot(slots, item);
-        Debug.Log("Index = " + index);
         if (index != -1)
         {
             slots[index].item.IncreaseAmount();
@@ -116,6 +116,25 @@ public class InventoryUI : MonoBehaviour
         slots[emptySlotIndex].SetContent(item);
     }
 
+    private void ItemRemoved(Item item)
+    {
+        int index = findItemSlot(slots, item, true);
+
+        if (index != -1)
+        {
+            if (slots[index].item.amount > 1)
+            {
+                // Decrement the amount
+                slots[index].item.DecreaseAmount();
+            }
+            else
+            {
+                // if Last element in slot, delete from slot.
+                Destroy(slots[index].item.gameObject);
+            }
+        }
+    }
+
     private int FindEmptySlot(List<Slot> slots)
     {
         int index = -1;
@@ -132,13 +151,18 @@ public class InventoryUI : MonoBehaviour
 
     private int findItemSlot(List<Slot> slots, Item item)
     {
+        return findItemSlot(slots, item, false);
+    }
+
+    private int findItemSlot(List<Slot> slots, Item item, bool ignoreStackSize)
+    {
         int index = -1;
         for (int i = 0; i < slots.Count; i++)
         {
             if(!slots[i].isEmpty())
                 if (slots[i].item.item.itemName == item.itemName)
                 {
-                    if(slots[i].item.amount < item.stackSize) 
+                    if(slots[i].item.amount < item.stackSize || ignoreStackSize) 
                     {
                         index = i;
                         break;

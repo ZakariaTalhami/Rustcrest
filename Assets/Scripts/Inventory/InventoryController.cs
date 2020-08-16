@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
+// TODO: Needs lots of refactoring
 public class InventoryController : MonoBehaviour {
     
     public static InventoryController instance;
@@ -15,6 +17,11 @@ public class InventoryController : MonoBehaviour {
             instance = this;
             inventory = new List<Item>();
         }
+    }
+
+    public int GetItemCount(string slug)
+    {
+        return inventory.Count(item => item.slugName == slug);
     }
 
     public bool GiveItem(Item itemToGive) {
@@ -49,10 +56,22 @@ public class InventoryController : MonoBehaviour {
             GameObject itemGO = Instantiate(item.prefab, this.transform.position + (this.transform.forward * 0.5f), Quaternion.identity);
             Rigidbody itemRB = itemGO.transform.GetComponent<Rigidbody>();
             itemRB.AddForce((this.transform.forward * 0.5f ), ForceMode.Impulse);
+            UIEventHandler.ItemDroppedFromInventory(item);
             return true;
         }
 
         return false;        
+    }
+
+    public bool OfferItem(Item item)
+    {
+        bool removed = RemoveItem(item);
+        if(removed)
+        {
+            UIEventHandler.ItemRemovedFromInventory(item);
+        }
+
+        return removed;
     }
 
     public bool RemoveItem(Item item)

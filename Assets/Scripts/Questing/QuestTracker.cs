@@ -25,14 +25,15 @@ public class QuestTracker
         GoalTrackerFactory factory = new GoalTrackerFactory();
         foreach (BaseGoal goal in this.quest.goals)
         {
-            goalTrackers.Add((GoalTracker)factory.GetGoalTracker(goal, this));
+            GoalTracker goalTracker = factory.GetGoalTracker(goal, this);
+            goalTrackers.Add(goalTracker);
+            goalTracker.StartTracking();
         }
     }
 
     public void evaluate()
     {
 
-        // if(goalTrackers.Count > 0 && goalTrackers.All(tracker => tracker.isCompleted))
         if(goalTrackers.All(tracker => tracker.isCompleted))
         {
             Debug.Log("SetAsComplete");
@@ -53,11 +54,17 @@ public class QuestTracker
     public void SetAsComplete()
     {
         state = QuestState.Complete;
+        RequestQuestCompletedMessage();
     }
 
     public void SetAsTurnIn()
     {
         state = QuestState.TurnedIn;
         goalTrackers.ForEach(tracker => tracker.CompleteGoal());
+    }
+
+    private void RequestQuestCompletedMessage()
+    {
+        MessageHandler.DisplayMessage(quest.name+" Completed!");
     }
 }

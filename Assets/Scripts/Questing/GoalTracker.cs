@@ -15,12 +15,16 @@ public class GoalTracker
     {
         this.quest = quest;
         this.goal = goal;
-        SetEventListeners();
     }
 
     protected virtual bool CheckConditions()
     {
         return false;
+    }
+
+    public virtual void StartTracking()
+    {
+        SetEventListeners();
     }
 
     public virtual void Evaluate()
@@ -31,6 +35,7 @@ public class GoalTracker
 
     protected virtual void SetEventListeners() { }
     protected virtual void RemoveEventListners() { }
+
     public virtual void CompleteGoal() {
         RemoveEventListners();
     }

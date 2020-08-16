@@ -30,13 +30,17 @@ public class QuestController : MonoSingleton<QuestController>
 
     public void GiveQuest(Quest quest)
     {
-        questTrackers.Add(new QuestTracker(quest, QuestTracker.QuestState.InProgress));
+        QuestTracker tracker = new QuestTracker(quest, QuestTracker.QuestState.InProgress);
+        questTrackers.Add(tracker);
+        UIEventHandler.QuestAccepted(tracker);
+        MessageHandler.DisplayMessage("Quest Accepted: " + quest.name);
     }
 
     public void TurnInQuest(Quest quest)
     {
         QuestTracker tracker = GetQuestTracker(quest);
         tracker.SetAsTurnIn();
+        UIEventHandler.QuestTurnedIn(tracker);
     }
 
 }

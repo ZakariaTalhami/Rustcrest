@@ -68,7 +68,6 @@ public class QuestGiver : NPC
                 QuestController.Instance.GiveQuest(quests[0]);
                 if (markerHandler != null)
                 {
-                    Debug.LogWarning("markerHandler.ShowQuestionMark();");
                     markerHandler.ShowQuestionMark();
                 } 
             }

@@ -27,6 +27,7 @@ public class DialogController : MonoBehaviour
             Instance = this;
             GetUIElements();
             dialogPanel.gameObject.SetActive(false);
+            UIEventHandler.onDialogInterrupted += CloseDialogInteraction;
         }
     }
 
